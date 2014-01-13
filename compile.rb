@@ -108,7 +108,7 @@ puts ''
 
 
 # If any broken links, check to see if we still want to compile
-while check
+while check > 0
   print 'There were errors when checking the links; continue anyways? (y/n) '
   response = gets
 
@@ -116,7 +116,7 @@ while check
   if response == 'n' || response == 'no'
     exit
   elsif response == 'y' || response == 'yes'
-    check = false
+    check = 0
   end
 end
 
