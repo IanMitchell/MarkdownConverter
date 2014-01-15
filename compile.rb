@@ -53,9 +53,12 @@ def check_all_file_links_in_directory
     file_list.each_index do |idx|
       unless idx % 2 == 0
         file_list[idx].slice!(0) if file_list[idx][0] == '/'
-        unless File::exist? file_list[idx].to_s || file_list[idx][0] == '#'
-          puts "\tThere is a broken link in #{file}: ".red + "\"#{file_list[idx]}\"".yellow
-          check = 1
+
+        unless file_list[idx][0..6] == 'http://'
+          unless File::exist? file_list[idx].to_s
+            puts "\tThere is a broken link in #{file}: ".red + "\"#{file_list[idx]}\"".yellow
+            check = 1
+          end
         end
       end
     end
